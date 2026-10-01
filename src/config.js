@@ -75,7 +75,7 @@ export default {
       ],
       back: [
         { src: 'photos/photo_02.jpg', caption: 'Home', date: 'Wherever you are' },
-        { src: 'photos/photo_03.jpg', caption: 'Our favourite place', date: '' },
+        { src: 'photos/photo_24.jpg', caption: 'Our favourite place', date: '' },
       ],
     },
     {
@@ -257,7 +257,7 @@ To be continued, every single day.`,
     title: 'Our Garden',
     subtitle: 'Where the story keeps growing.',
     photo: {
-      src: 'photos/photo_24.jpg',
+      src: 'photos/photo_03.jpg',
       caption: 'Us, always',
       date: 'Today & every day after',
       story: 'The best is yet to come.',
