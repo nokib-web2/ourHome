@@ -1,0 +1,2 @@
+Drop your videos in this folder (.mp4 or .webm) and reference them in src/config.js as 'videos/<filename>'.
+Short clips around 720p work best. On the wall they play muted on a loop; click one to watch it with sound.

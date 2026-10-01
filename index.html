@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#efe6da" />
+    <title>The Gallery of Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas id="webgl" aria-label="A 3D gallery of our memories"></canvas>
+    <div class="fx-vignette" aria-hidden="true"></div>
+    <div class="fx-grain" aria-hidden="true"></div>
+
+    <header class="hud">
+      <a class="brand" href="#"><span class="brand-mono"></span><span class="brand-name"></span></a>
+      <button class="sound" type="button" hidden aria-label="Toggle music">
+        <span class="bars"><i></i><i></i><i></i><i></i></span><span class="sound-label">Sound</span>
+      </button>
+    </header>
+
+    <nav class="rooms-nav" aria-label="Rooms"></nav>
+    <div class="where"></div>
+
+    <section class="intro">
+      <p class="eyebrow intro-since"></p>
+      <h1 class="intro-title"></h1>
+      <p class="intro-tagline"></p>
+    </section>
+    <div class="scroll-cue"><span>Scroll to enter</span><i></i></div>
+
+    <section class="chapter" aria-live="polite">
+      <p class="eyebrow chapter-num"></p>
+      <h2 class="chapter-title"></h2>
+      <p class="chapter-sub"></p>
+    </section>
+
+    <section class="outro">
+      <p class="eyebrow outro-eyebrow"></p>
+      <h2 class="outro-title"></h2>
+      <p class="outro-text"></p>
+      <button class="outro-replay" type="button">Walk through again</button>
+    </section>
+
+    <div class="hint"></div>
+    <div class="bfly-hint" aria-hidden="true"><i></i><span></span></div>
+    <div class="progress"><span></span></div>
+
+    <div class="lightbox" hidden>
+      <button class="lb-close" type="button" aria-label="Close">Close</button>
+      <figure>
+        <img alt="" />
+        <video class="lb-video" controls playsinline loop hidden></video>
+        <figcaption>
+          <p class="eyebrow lb-date"></p>
+          <h3 class="lb-title"></h3>
+          <p class="lb-story"></p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="loader">
+      <div class="loader-inner">
+        <p class="eyebrow">Welcome to</p>
+        <h2 class="loader-title"></h2>
+        <p class="loader-sub"></p>
+        <div class="loader-bar"><span></span></div>
+        <button class="loader-enter" type="button" disabled>Enter the gallery</button>
+        <p class="loader-note">Scroll to walk through</p>
+      </div>
+    </div>
+
+    <div id="scroll-track"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

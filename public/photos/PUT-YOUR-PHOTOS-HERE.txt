@@ -1,0 +1,3 @@
+Drop your photos in this folder and reference them in src/config.js as 'photos/<filename>'.
+The default config expects names like welcome-1.jpg, met-1.jpg ... forever-3.jpg,
+but you can use any names you like - just update config.js to match.
