@@ -9,7 +9,6 @@ export function createUI(config) {
   const $ = (s) => document.querySelector(s);
   const body = document.body;
   const isTouch = matchMedia('(pointer: coarse)').matches;
-  body.classList.add('is-locked');
 
   document.title = `${config.title} · ${config.couple}`;
   $('.brand-mono').textContent = config.initials;
@@ -17,8 +16,8 @@ export function createUI(config) {
   $('.intro-since').textContent = config.since;
   $('.intro-title').innerHTML = coupleHTML(config.couple);
   $('.intro-tagline').textContent = config.tagline;
-  $('.loader-title').innerHTML = coupleHTML(config.couple);
-  $('.loader-sub').textContent = config.tagline;
+  if ($('.loader-title')) $('.loader-title').innerHTML = coupleHTML(config.couple);
+  if ($('.loader-sub')) $('.loader-sub').textContent = config.tagline;
   $('.outro-eyebrow').textContent = config.outro?.eyebrow || '';
   $('.outro-title').textContent = config.outro?.title || '';
   $('.outro-text').textContent = config.outro?.text || '';

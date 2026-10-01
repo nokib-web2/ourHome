@@ -734,16 +734,7 @@ body.is-dark .outro-replay:hover {
 
 /* ── loader ─────────────────────────────── */
 .loader {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  display: grid;
-  place-items: center;
-  padding: var(--gutter);
-  background: radial-gradient(ellipse at 50% 40%, #f7f1e8, var(--paper) 70%);
-  color: var(--ink);
-  text-align: center;
-  transition: opacity 1.4s var(--ease), visibility 1.4s;
+  display: none !important;
 }
 .loader.is-hidden {
   opacity: 0;
