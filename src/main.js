@@ -570,6 +570,7 @@ async function main() {
     camera.rotation.set(s.pitch, s.yaw, 0);
     camera.updateMatrixWorld();
     renderer.render(scene, camera);
+    ui.setProgress(0.85 + 0.14 * (k / Math.max(1, tour.endU)));
   }
   renderer.setRenderTarget(null);
   warm.dispose();
@@ -586,9 +587,11 @@ async function main() {
 
   let time = 0;
   let lastNow = performance.now();
-  let enterTime = 0;
+  let enterTime = -1;
   ui.ready(() => {
     enterTime = time;
+    ambience.setMuted(!ui.soundOn);
+    ambience.start();
     lenis.start();
   });
 
@@ -704,8 +707,8 @@ async function main() {
     prevRouteYaw = s.yaw;
     prevRoutePitch = s.pitch;
 
-    // start directly in front of the house
-    const reveal = 1;
+    // cinematic reveal: smooth drone drift toward the house after entering
+    const reveal = enterTime < 0 ? 0 : easeOut(clamp01((time - enterTime) / 3.8));
     parallax.x += (parallax.tx - parallax.x) * (1 - Math.exp(-dt * 3));
     parallax.y += (parallax.ty - parallax.y) * (1 - Math.exp(-dt * 3));
     camera.position.copy(s.pos);

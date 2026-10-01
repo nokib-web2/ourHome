@@ -10,12 +10,16 @@ export function createUI(config) {
   const body = document.body;
   const isTouch = matchMedia('(pointer: coarse)').matches;
 
+  body.classList.add('is-locked');
+
   document.title = `${config.title} · ${config.couple}`;
   $('.brand-mono').textContent = config.initials;
   $('.brand-name').textContent = config.title;
   $('.intro-since').textContent = config.since;
   $('.intro-title').innerHTML = coupleHTML(config.couple);
   $('.intro-tagline').textContent = config.tagline;
+  if ($('.loader-crest-text')) $('.loader-crest-text').textContent = config.initials || 'Y & M';
+  if ($('.loader-eyebrow')) $('.loader-eyebrow').textContent = config.since ? `Welcome to · ${config.since}` : 'Welcome to';
   if ($('.loader-title')) $('.loader-title').innerHTML = coupleHTML(config.couple);
   if ($('.loader-sub')) $('.loader-sub').textContent = config.tagline;
   $('.outro-eyebrow').textContent = config.outro?.eyebrow || '';
@@ -27,6 +31,8 @@ export function createUI(config) {
 
   const loader = $('.loader');
   const bar = $('.loader-bar span');
+  const percentText = $('.loader-percent');
+  const statusText = $('.loader-status-text');
   const enterBtn = $('.loader-enter');
   const intro = $('.intro');
   const cue = $('.scroll-cue');
@@ -67,7 +73,6 @@ export function createUI(config) {
     if (audio) (soundOn ? audio.play() : Promise.resolve(audio.pause())).catch?.(() => {});
     onSound?.(soundOn);
   });
-  if ($('.loader-note')) $('.loader-note').textContent = isTouch ? 'Best with sound on · swipe to walk through' : 'Best with sound on · scroll or use W/S to walk';
 
   let onEnter = null;
   const enter = () => {
@@ -77,6 +82,11 @@ export function createUI(config) {
     onEnter?.();
   };
   enterBtn?.addEventListener('click', enter);
+  window.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && loader?.classList.contains('is-ready') && !loader?.classList.contains('is-hidden')) {
+      enter();
+    }
+  });
 
   // ── lightbox ──
   const lb = $('.lightbox');
@@ -117,13 +127,26 @@ export function createUI(config) {
 
   return {
     setProgress(p) {
-      if (bar) bar.style.transform = `scaleX(${Math.min(1, p)})`;
+      const clamped = Math.max(0, Math.min(1, p));
+      if (bar) bar.style.transform = `scaleX(${clamped})`;
+      if (percentText) percentText.textContent = `${Math.round(clamped * 100)}%`;
+      if (statusText) {
+        if (clamped < 0.35) statusText.textContent = 'Gathering our memories...';
+        else if (clamped < 0.7) statusText.textContent = 'Illuminating the gallery...';
+        else if (clamped < 0.95) statusText.textContent = 'Preparing our universe...';
+        else statusText.textContent = 'Our story is ready';
+      }
     },
 
     ready(cb) {
       onEnter = cb;
-      loader?.classList.add('is-ready');
-      enter();
+      if (percentText) percentText.textContent = '100%';
+      if (statusText) statusText.textContent = 'Our story is ready';
+      if (bar) bar.style.transform = 'scaleX(1)';
+      setTimeout(() => {
+        loader?.classList.add('is-ready');
+        if (enterBtn) enterBtn.disabled = false;
+      }, 350);
     },
 
     buildNav(roomList, onGo) {

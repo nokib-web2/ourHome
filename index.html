@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#efe6da" />
+    <meta name="theme-color" content="#090e1a" />
     <title>The Gallery of Us</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -64,14 +64,62 @@
       </figure>
     </div>
 
-    <div class="loader" hidden style="display: none">
+    <div class="loader" id="loader">
+      <div class="loader-bg" aria-hidden="true">
+        <div class="loader-nebula"></div>
+        <div class="loader-stars">
+          <i style="--top: 14%; --left: 18%; --size: 2px; --dur: 2.8s; --delay: 0s;"></i>
+          <i style="--top: 22%; --left: 78%; --size: 3px; --dur: 3.6s; --delay: 0.5s;"></i>
+          <i style="--top: 68%; --left: 12%; --size: 2px; --dur: 4.2s; --delay: 1.2s;"></i>
+          <i style="--top: 72%; --left: 84%; --size: 2.5px; --dur: 3.1s; --delay: 0.8s;"></i>
+          <i style="--top: 38%; --left: 8%; --size: 2px; --dur: 4.8s; --delay: 1.5s;"></i>
+          <i style="--top: 16%; --left: 88%; --size: 2.5px; --dur: 3.9s; --delay: 0.2s;"></i>
+          <i style="--top: 82%; --left: 32%; --size: 1.5px; --dur: 3.3s; --delay: 1.8s;"></i>
+          <i style="--top: 30%; --left: 64%; --size: 2px; --dur: 4.5s; --delay: 0.9s;"></i>
+          <i style="--top: 52%; --left: 92%; --size: 3px; --dur: 2.9s; --delay: 1.1s;"></i>
+          <i style="--top: 86%; --left: 68%; --size: 2px; --dur: 3.7s; --delay: 0.4s;"></i>
+        </div>
+      </div>
+
       <div class="loader-inner">
-        <p class="eyebrow">Welcome to</p>
-        <h2 class="loader-title"></h2>
-        <p class="loader-sub"></p>
-        <div class="loader-bar"><span></span></div>
-        <button class="loader-enter" type="button" disabled>Enter the gallery</button>
-        <p class="loader-note">Scroll to walk through</p>
+        <div class="loader-crest" aria-hidden="true">
+          <span class="crest-sparkle top">✦</span>
+          <div class="crest-ring">
+            <span class="loader-crest-text">Y & M</span>
+          </div>
+          <span class="crest-sparkle bottom">✦</span>
+        </div>
+
+        <p class="eyebrow loader-eyebrow">Welcome to</p>
+        <h2 class="loader-title">You <em>&</em> Me</h2>
+        <p class="loader-sub">A little gallery of our favourite memories</p>
+
+        <div class="loader-progress-box">
+          <div class="loader-bar-wrap">
+            <div class="loader-bar"><span></span></div>
+          </div>
+          <div class="loader-meta">
+            <span class="loader-status-text">Gathering our memories...</span>
+            <span class="loader-percent">0%</span>
+          </div>
+        </div>
+
+        <div class="loader-action-box">
+          <button class="loader-enter" type="button" disabled aria-label="Enter the gallery">
+            <span class="btn-content">
+              <span class="btn-sparkle">✦</span>
+              <span class="btn-label">Step Into Our Story</span>
+              <span class="btn-sparkle">✦</span>
+            </span>
+          </button>
+          <p class="loader-note">
+            <svg class="note-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+              <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+            </svg>
+            Best experienced with sound on
+          </p>
+        </div>
       </div>
     </div>
 
