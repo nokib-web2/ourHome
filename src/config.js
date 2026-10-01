@@ -59,7 +59,7 @@ export default {
       music: 'prelude',
       left: [
         {
-          src: 'photos/photo_01.jpg',
+          src: 'photos/photo_21.jpg',
           caption: 'The two of us',
           date: 'Always',
           size: 'large',
@@ -140,7 +140,7 @@ export default {
       wall: '#5e2c33',
       frame: 'gold',
       music: 'canon',
-      left: [{ src: 'photos/photo_21.jpg', caption: 'Promise', date: '' }],
+      left: [{ src: 'photos/photo_01.jpg', caption: 'Promise', date: '' }],
       right: [{ src: 'photos/photo_22.jpg', caption: 'Always', date: '' }],
       back: [
         { src: 'photos/photo_23.jpg', caption: 'Our journey', date: '' },
