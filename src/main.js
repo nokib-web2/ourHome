@@ -586,14 +586,22 @@ async function main() {
 
   let time = 0;
   let lastNow = performance.now();
-  let enterTime = -1;
+  let enterTime = 0;
   ui.ready(() => {
     enterTime = time;
-    // nature sounds need a click to start (browser rule); this is that click
-    ambience.setMuted(!ui.soundOn);
-    ambience.start();
     lenis.start();
   });
+
+  const startAudioOnGesture = () => {
+    ambience.setMuted(!ui.soundOn);
+    ambience.start();
+    ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach((ev) =>
+      window.removeEventListener(ev, startAudioOnGesture)
+    );
+  };
+  ['pointerdown', 'touchstart', 'wheel', 'keydown'].forEach((ev) =>
+    window.addEventListener(ev, startAudioOnGesture, { passive: true })
+  );
 
   const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -696,8 +704,8 @@ async function main() {
     prevRouteYaw = s.yaw;
     prevRoutePitch = s.pitch;
 
-    // intro reveal: a slow drift toward the house after pressing "Enter"
-    const reveal = enterTime < 0 ? 0 : easeOut(clamp01((time - enterTime) / 4.5));
+    // start directly in front of the house
+    const reveal = 1;
     parallax.x += (parallax.tx - parallax.x) * (1 - Math.exp(-dt * 3));
     parallax.y += (parallax.ty - parallax.y) * (1 - Math.exp(-dt * 3));
     camera.position.copy(s.pos);

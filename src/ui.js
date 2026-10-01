@@ -67,15 +67,16 @@ export function createUI(config) {
     if (audio) (soundOn ? audio.play() : Promise.resolve(audio.pause())).catch?.(() => {});
     onSound?.(soundOn);
   });
-  $('.loader-note').textContent = isTouch ? 'Best with sound on · swipe to walk through' : 'Best with sound on · scroll or use W/S to walk';
+  if ($('.loader-note')) $('.loader-note').textContent = isTouch ? 'Best with sound on · swipe to walk through' : 'Best with sound on · scroll or use W/S to walk';
 
   let onEnter = null;
-  enterBtn.addEventListener('click', () => {
-    loader.classList.add('is-hidden');
+  const enter = () => {
+    loader?.classList.add('is-hidden');
     body.classList.remove('is-locked');
     if (audio && soundOn) audio.play().catch(() => {});
     onEnter?.();
-  });
+  };
+  enterBtn?.addEventListener('click', enter);
 
   // ── lightbox ──
   const lb = $('.lightbox');
@@ -116,13 +117,13 @@ export function createUI(config) {
 
   return {
     setProgress(p) {
-      bar.style.transform = `scaleX(${Math.min(1, p)})`;
+      if (bar) bar.style.transform = `scaleX(${Math.min(1, p)})`;
     },
 
     ready(cb) {
       onEnter = cb;
-      loader.classList.add('is-ready');
-      enterBtn.disabled = false;
+      loader?.classList.add('is-ready');
+      enter();
     },
 
     buildNav(roomList, onGo) {
